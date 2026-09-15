@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TWP — ввод руки</title>
+<!-- Telegram Web App SDK: через него выбранная рука передаётся боту. -->
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div id="counter">выбрано 0 из 7</div>
+</header>
+
+<!-- Раскладка: карты встают в ряды 1/2/4 в порядке нажатий. Нажатие по карте в ряду
+     возвращает её в сетку. -->
+<section id="layout" aria-label="Ваша раскладка">
+  <div class="lane" data-row="0"><span class="lane-name">Ряд 1</span><div class="slots"></div></div>
+  <div class="lane" data-row="1"><span class="lane-name">Ряд 2</span><div class="slots"></div></div>
+  <div class="lane" data-row="2"><span class="lane-name">Ряд 4</span><div class="slots"></div></div>
+</section>
+
+<main id="grid" aria-label="Сетка карт"></main>
+
+<section id="joker-box" hidden>
+  <button type="button" id="joker" class="cell joker">Jk <span id="joker-count">0/2</span></button>
+</section>
+
+<footer>
+  <label class="switch">
+    <input type="checkbox" id="arrange" checked>
+    <span>Разобрать мою раскладку</span>
+  </label>
+  <div class="row">
+    <label>Мест
+      <select id="players">
+        <option value="2" selected>2</option><option value="3">3</option>
+        <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+      </select>
+    </label>
+    <label>Колода
+      <select id="deck"><option value="52">52</option><option value="54" selected>54 (Jk)</option></select>
+    </label>
+  </div>
+  <div class="row">
+    <button type="button" id="clear">Стереть</button>
+    <button type="button" id="send" disabled>Считать</button>
+  </div>
+  <p class="note">Разбор уже сыгранных раздач — не подсказка во время игры.</p>
+</footer>
+
+<script src="payload.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
